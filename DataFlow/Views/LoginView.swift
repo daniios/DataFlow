@@ -8,15 +8,6 @@
 
 import SwiftUI
 
-class LoginViewModel: ObservableObject {
-    @Published var name = ""
-    @Published var isNameValid = false
-    
-    func updateNameValidity() {
-        isNameValid = name.count >= 3
-    }
-}
-
 struct LoginView: View {
     @AppStorage("name") private var name: String = ""
     @AppStorage("isRegistered") private var isRegistered: Bool = false
