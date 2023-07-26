@@ -15,7 +15,7 @@ struct RootView: View {
     var body: some View {
         Group {
             if isRegistered {
-                ContentView(isRegistered: $isRegistered, user: $name)
+                ContentView(isRegistered: $isRegistered, userName: $name)
             } else {
                 LoginView()
             }

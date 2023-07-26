@@ -11,11 +11,11 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var timer = TimeCounter()
     @Binding var isRegistered: Bool
-    @Binding var user: String
+    @Binding var userName: String
     
     var body: some View {
         VStack {
-            Text("Hi, \(user)!")
+            Text("Hi, \(userName)!")
                 .font(.largeTitle)
                 .padding(.top, 50)
             Text(timer.counter.formatted())
