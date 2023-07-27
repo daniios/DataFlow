@@ -36,7 +36,7 @@ struct LoginView: View {
     
     private func registerUser() {
         if viewModel.isNameValid {
-            isRegistered = true
+            isRegistered.toggle()
             name = viewModel.name
         }
     }
