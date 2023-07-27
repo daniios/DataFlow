@@ -22,8 +22,12 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .padding(.top, 100)
             Spacer()
-            ButtonView(timer: timer)
-            LogoutButtonView(isRegistered: $isRegistered)
+            CustomButtonView(buttonColor: .red, buttonText: timer.buttonTitle) {
+                timer.startTimer()
+            }
+            CustomButtonView(buttonColor: .blue, buttonText: "Logout") {
+                logoutUser()
+            }
             Spacer()
         }
         .padding()
@@ -34,47 +38,25 @@ struct ContentView: View {
     }
 }
 
-struct ButtonView: View {
-    @ObservedObject var timer: TimeCounter
+struct CustomButtonView: View {
+    let buttonColor: Color
+    let buttonText: String
+    let buttonAction: () -> Void
     
     var body: some View {
-        Button(action: timer.startTimer) {
-            Text(timer.buttonTitle)
+        Button(action: buttonAction) {
+            Text(buttonText)
                 .font(.title)
                 .bold()
                 .foregroundColor(.white)
         }
         .frame(width: 200, height: 60)
-        .background(.red)
+        .background(buttonColor)
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.black, lineWidth: 4)
         )
-        .padding(50)
-    }
-}
-
-struct LogoutButtonView: View {
-    @Binding var isRegistered: Bool
-    
-    var body: some View {
-        Button(action: logoutUser) {
-            Text("Logout")
-                .font(.title)
-                .bold()
-                .foregroundColor(.white)
-        }
-        .frame(width: 200, height: 60)
-        .background(.blue)
-        .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.black, lineWidth: 4)
-        )
-    }
-    
-    private func logoutUser() {
-        isRegistered.toggle()
+        .padding(25)
     }
 }
