@@ -26,15 +26,11 @@ struct ContentView: View {
                 timer.startTimer()
             }
             CustomButtonView(buttonColor: .blue, buttonText: "Logout") {
-                logoutUser()
+                isRegistered.toggle()
             }
             Spacer()
         }
         .padding()
-    }
-    
-    private func logoutUser() {
-        isRegistered.toggle()
     }
 }
 
